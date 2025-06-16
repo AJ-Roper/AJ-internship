@@ -5,6 +5,12 @@ import nftImage from "../../images/nftImage.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+// dont forget to make the skeleton loading state before moving on!
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -16,6 +22,32 @@ const HotCollections = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   useEffect(() => {
@@ -38,7 +70,8 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <slider {...settings}>
+          <Slider {...settings}>
+            {loading && <Skeleton cards={4} />}
             {collections.map((collection, index) => (
               <div className="nftItem" key={index}>
                 <div className="nft_coll">
@@ -70,7 +103,7 @@ const HotCollections = () => {
                 </div>
               </div>
             ))}
-          </slider>
+          </Slider>
         </div>
       </div>
     </section>

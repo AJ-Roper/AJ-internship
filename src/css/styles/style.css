@@ -16720,3 +16720,7 @@ img {
 .nftItem {
   max-width: 440px;
 }
+
+.slick-slide > div {
+  margin: 0 10px;
+}
