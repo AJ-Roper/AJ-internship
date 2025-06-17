@@ -10,8 +10,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-// dont forget to make the skeleton loading state before moving on!
-
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -71,7 +69,7 @@ const HotCollections = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {loading && <Skeleton cards={4} />}
+            {loading && <Skeleton count={4} height="440px" />}
             {collections.map((collection, index) => (
               <div className="nftItem" key={index}>
                 <div className="nft_coll">
